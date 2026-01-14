@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "buses": {
+      "$busId": {
+        "live": {
+          ".read": "auth != null && root.child('routes').child(data.child('routeId').val()).child('parentsAllowed').child(auth.uid).val() == true",
+          ".write": "auth != null"
+        }
+      }
+    },
+    "routes": {
+      "$routeId": {
+        ".read": "auth != null && data.child('parentsAllowed').child(auth.uid).val() == true",
+        ".write": "auth != null"
+      }
+    },
+    "trips": {
+      "$tripId": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
+  }
+}
